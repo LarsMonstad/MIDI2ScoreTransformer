@@ -31,8 +31,33 @@ data
 ```
 
 ### Setup (Inference)
-1. Download the `MIDI2ScoreTF.ckpt` from GitHub ('Releases' section) and place it where you like.
+ Download pre-trained model:
+   - Get [`MIDI2ScoreTF.ckpt`](https://github.com/TimFelixBeyer/MIDI2ScoreTransformer/releases) from Releases
+   - Place in project root directory
 
+## Usage
+Convert MIDI files to MusicXML scores:
+
+```bash
+python inference.py path/to/input.midi [OPTIONS]
+```
+
+### Options:
+| Flag           | Description                                  | Default                  |
+|----------------|----------------------------------------------|--------------------------|
+| `-m`, `--model` | Path to model checkpoint                    | `MIDI2ScoreTF.ckpt`      |
+| `-o`, `--output`| Custom output path (.xml)                   | `<input_name>.xml`       |
+
+### Example Commands
+1. Basic conversion (uses default model and output name):
+```bash
+python inference.py my_piano_performance.mid
+```
+
+2. Custom output path and model:
+```bash
+python inference.py jazz_improvisation.mid -m custom_model.ckpt -o jazz_score.xml
+```
 
 ### Setup (Training)
 1. Run `dataset.py` to preprocess the datasets and populate the cache.
